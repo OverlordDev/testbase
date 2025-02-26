@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка MySQL</title>
+</head>
+<body>
+
+<h2>Статус подключения к MySQL</h2>
+<p id="status">Проверка...</p>
+
+<script>
+fetch("server.php")
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("status").textContent = data.message;
+        document.getElementById("status").style.color = data.status === "success" ? "green" : "red";
+    })
+    .catch(error => {
+        document.getElementById("status").textContent = "Ошибка запроса";
+        document.getElementById("status").style.color = "red";
+    });
+</script>
+
+</body>
+</html>
